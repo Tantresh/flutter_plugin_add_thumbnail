@@ -25,5 +25,5 @@ class LoadedMedia extends ThumbnailState {
   List<Object> get props => [mediaInfo];
 
   @override
-  String toString() => 'LoadedMedia { items: ${mediaInfo.title} }';
+  String toString() => (mediaInfo!=null) ? 'LoadedMedia { items: ${mediaInfo.title} }' : null;
 }
