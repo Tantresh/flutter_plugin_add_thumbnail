@@ -70,7 +70,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
       children: <Widget>[
         FlatButton(
 //           child: Opacity(opacity: 0.36, 
-                         child: Text("Cancel"),
+                         child: Text("CANCEL"),
 //                         ),
           onPressed: () {
             Navigator.pop(context);
@@ -78,18 +78,25 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
         ),
         FlatButton(
           child: Text(
-              media != null && media.title != null
+              media != null ? 
+                media.title != null 
 //             && media.thumbnailUrl != null 
-            ? "SAVE" : "NEXT",
+            ? "SAVE" : "NEXT" : "NEXT",
               style: TextStyle(fontWeight: FontWeight.bold)),
           onPressed: () {
-            if (media == null || media.title == null
+            if (media == null 
+//                 || media.title == null
 //                 || media.thumbnailUrl == null
                ) {
               SystemChannels.textInput.invokeMethod('TextInput.hide');
               BlocProvider.of<ThumbnailBloc>(context)
                   .add(AddUrl(url: _txtController.text));
             } else {
+              if (media.title == null){
+              SystemChannels.textInput.invokeMethod('TextInput.hide');
+              BlocProvider.of<ThumbnailBloc>(context)
+                  .add(AddUrl(url: _txtController.text));
+              }
               Navigator.pop(context, media);
             }
           },
@@ -110,10 +117,12 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
       child: state is LoadingMedia ||
               state is DialogOpened ||
               state is LoadedMedia &&
-                  (media == null || media.title == null
+                  (media == null
+//                    || media.title == null
 //                    || media.thumbnailUrl == null
                   )
-          ? _loader(state,media.title)
+          ? _loader(state)
+          : (media.title == null) ? _loader(state)
           : state is LoadedMedia && media != null
               ? _thumbnailWidget(media)
               : Container(
@@ -184,7 +193,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
     );
   }
 
-  Widget _loader(ThumbnailState state, String title) {
+  Widget _loader(ThumbnailState state) {
     return state is DialogOpened
         ? SizedBox()
         : Container(
@@ -201,9 +210,8 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
                     ),
                   )
                 : Text(
-                  "nooo",
 //                   title.toString(),
-//                     widget.errorText,
+                    widget.errorText,
                     style: TextStyle(color: Colors.white70),
                     textAlign: TextAlign.center,
                   ),
