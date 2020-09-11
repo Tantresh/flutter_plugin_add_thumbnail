@@ -201,7 +201,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
                     ),
                   )
                 : Text(
-                  title
+                  title,
 //                     widget.errorText,
                     style: TextStyle(color: Colors.white70),
                     textAlign: TextAlign.center,
