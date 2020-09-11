@@ -113,7 +113,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
                   (media == null || media.title == null
 //                    || media.thumbnailUrl == null
                   )
-          ? _loader(state)
+          ? _loader(state,media.title)
           : state is LoadedMedia && media != null
               ? _thumbnailWidget(media)
               : Container(
@@ -184,7 +184,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
     );
   }
 
-  Widget _loader(ThumbnailState state) {
+  Widget _loader(ThumbnailState state, String title) {
     return state is DialogOpened
         ? SizedBox()
         : Container(
@@ -201,7 +201,8 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
                     ),
                   )
                 : Text(
-                    widget.errorText,
+                  title
+//                     widget.errorText,
                     style: TextStyle(color: Colors.white70),
                     textAlign: TextAlign.center,
                   ),
