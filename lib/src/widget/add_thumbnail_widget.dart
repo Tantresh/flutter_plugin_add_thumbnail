@@ -69,17 +69,23 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
     return ButtonBar(
       children: <Widget>[
         FlatButton(
-          child: Opacity(opacity: 0.36, child: Text("CANCEL")),
+//           child: Opacity(opacity: 0.36, 
+                         child: Text("CANCEL"),
+//                         ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         FlatButton(
           child: Text(
-              media != null && media.thumbnailUrl != null ? "SAVE" : "NEXT",
+              media != null && media.title != null
+//             && media.thumbnailUrl != null 
+            ? "SAVE" : "NEXT",
               style: TextStyle(fontWeight: FontWeight.bold)),
           onPressed: () {
-            if (media == null || media.thumbnailUrl == null) {
+            if (media == null || media.title == null
+//                 || media.thumbnailUrl == null
+               ) {
               SystemChannels.textInput.invokeMethod('TextInput.hide');
               BlocProvider.of<ThumbnailBloc>(context)
                   .add(AddUrl(url: _txtController.text));
@@ -104,7 +110,9 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
       child: state is LoadingMedia ||
               state is DialogOpened ||
               state is LoadedMedia &&
-                  (media == null || media.thumbnailUrl == null)
+                  (media == null || media.title == null
+//                    || media.thumbnailUrl == null
+                  )
           ? _loader(state)
           : state is LoadedMedia && media != null
               ? _thumbnailWidget(media)
