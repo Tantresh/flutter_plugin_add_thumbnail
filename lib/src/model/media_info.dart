@@ -37,7 +37,9 @@ class MediaInfo {
 
     String toRawJson() => json.encode(toJson());
 
-    factory MediaInfo.fromJson(Map<String, dynamic> json) => MediaInfo(
+    factory MediaInfo.fromJson(Map<String, dynamic> json) { 
+        print(json);
+        return MediaInfo(
         type: json["type"] == null ? null : json["type"],
         providerUrl: json["provider_url"] == null ? null : json["provider_url"],
         thumbnailHeight: json["thumbnail_height"] == null ? null : json["thumbnail_height"],
@@ -53,6 +55,7 @@ class MediaInfo {
         html: json["html"] == null ? null : json["html"],
         version: json["version"] == null ? null : json["version"],
     );
+   }
 
     Map<String, dynamic> toJson() => {
         "type": type == null ? null : type,
