@@ -70,7 +70,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
       children: <Widget>[
         FlatButton(
 //           child: Opacity(opacity: 0.36, 
-                         child: Text("CANCEL"),
+                         child: Text("Cancel"),
 //                         ),
           onPressed: () {
             Navigator.pop(context);
