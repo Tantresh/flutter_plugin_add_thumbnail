@@ -46,6 +46,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
       maxLines: 1,
       onChanged: (text) {
         textFieldText = text;
+        print(text);
         BlocProvider.of<ThumbnailBloc>(context).add(UrlChange());
       },
       controller: _txtController,
