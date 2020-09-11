@@ -88,11 +88,13 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
 //                 || media.title == null
 //                 || media.thumbnailUrl == null
                ) {
+              print("media null onpressed");
               SystemChannels.textInput.invokeMethod('TextInput.hide');
               BlocProvider.of<ThumbnailBloc>(context)
                   .add(AddUrl(url: _txtController.text));
             } else {
               if (media.title == null){
+                print("title null on pressed");
               SystemChannels.textInput.invokeMethod('TextInput.hide');
               BlocProvider.of<ThumbnailBloc>(context)
                   .add(AddUrl(url: _txtController.text));
